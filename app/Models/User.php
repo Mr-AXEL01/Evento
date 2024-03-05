@@ -48,17 +48,17 @@ class User extends Authenticatable
 
 
 #---------------- set the relationShips for the User ------------------------#
-    public function admin(): HasOne
+    public function admins(): HasOne
     {
         return $this->hasOne(Admin::class);
     }
 
-    public function organiser(): HasOne
+    public function organisers(): HasOne
     {
         return $this->hasOne(Organiser::class);
     }
 
-    public function customer(): HasOne
+    public function customers(): HasOne
     {
         return $this->hasOne(Customer::class);
     }
