@@ -18,5 +18,6 @@ class Event extends Model
         'place',
         'status',
         'organiser_id',
+        'category_id',
     ];
 }
