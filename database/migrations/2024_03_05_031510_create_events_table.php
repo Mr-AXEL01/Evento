@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('place');
             $table->enum('status',['approved','refused']);
+            $table->foreignId('organiser_id')->constrained('organisers')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
