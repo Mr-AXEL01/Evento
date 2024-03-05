@@ -10,4 +10,9 @@ class Customer extends Model
 {
     use HasFactory;
     use OneToOneTrait;
+
+    protected $fillable = [
+        'user_id'
+    ];
+
 }
