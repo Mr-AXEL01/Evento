@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('place');
             $table->enum('status',['approved','refused']);
             $table->foreignId('organiser_id')->constrained('organisers')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
