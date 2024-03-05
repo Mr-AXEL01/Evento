@@ -21,4 +21,9 @@ class Reservation extends Model
     {
         return $this->belongsTo(Event::class);
     }
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }
