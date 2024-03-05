@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('date');
             $table->string('location');
             $table->string('place');
-            $table->enum('status',['aproved','refused']);
+            $table->enum('status',['approved','refused']);
             $table->timestamps();
         });
     }
