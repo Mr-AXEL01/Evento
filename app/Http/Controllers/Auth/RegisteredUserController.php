@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\Customer;
+use App\Models\Organiser;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -30,22 +33,45 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        try {
+            $request->validate([
+                'picture' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
+                'role' => ['required', 'in:customer,organiser,admin'],
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+            $pictureName = time() . '.' . $request->file('picture')->extension();
+            $request->file('picture')->storeAs('public/image', $pictureName);
 
-        event(new Registered($user));
+            $user = User::create([
+                'picture' => $pictureName,
+                'role' => $request->role,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-        Auth::login($user);
+            if ($request->role === 'customer') {
+                $customerData['user_id'] = $user->id;
+                Customer::create($customerData);
 
-        return redirect(RouteServiceProvider::HOME);
+            } elseif ($request->role === 'organiser') {
+                $organiserData['user_id'] = $user->id;
+                Organiser::create($organiserData);
+            } elseif ($request->role === 'admin') {
+                $adminData['user_id'] = $user->id;
+                Admin::create($adminData);
+            }
+
+            event(new Registered($user));
+
+            Auth::login($user);
+
+            return redirect(RouteServiceProvider::HOME);
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors(['error' => 'An error occurred while processing your request. Please try again later.']);
+        }
     }
 }
