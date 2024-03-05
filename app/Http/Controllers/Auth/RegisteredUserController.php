@@ -56,18 +56,22 @@ class RegisteredUserController extends Controller
             if ($request->role === 'customer') {
                 $customerData['user_id'] = $user->id;
                 Customer::create($customerData);
-
+                event(new Registered($user));
+                Auth::login($user);
+                return redirect(RouteServiceProvider::CUSTOMER);
             } elseif ($request->role === 'organiser') {
                 $organiserData['user_id'] = $user->id;
                 Organiser::create($organiserData);
+                event(new Registered($user));
+                Auth::login($user);
+                return redirect(RouteServiceProvider::ORGANISER);
             } elseif ($request->role === 'admin') {
                 $adminData['user_id'] = $user->id;
                 Admin::create($adminData);
+                event(new Registered($user));
+                Auth::login($user);
+                return redirect(RouteServiceProvider::ADMIN);
             }
-
-            event(new Registered($user));
-
-            Auth::login($user);
 
             return redirect(RouteServiceProvider::HOME);
         } catch (\Exception $e) {
