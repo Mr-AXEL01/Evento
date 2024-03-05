@@ -17,5 +17,6 @@ class Event extends Model
         'location',
         'place',
         'status',
+        'organiser_id',
     ];
 }
