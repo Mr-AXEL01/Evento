@@ -53,8 +53,6 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-//            dd($user);
-
             if ($request->role === 'customer') {
                 $customerData['user_id'] = $user->id;
                 Customer::create($customerData);
