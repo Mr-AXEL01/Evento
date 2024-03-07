@@ -4,7 +4,7 @@
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main">
         <div class=" p-5 mx-5 rounded-lg">
             <div class="uppercase text-sky-900 font-bold text-2xl">
-                Category
+                Categories
             </div>
             <div class="flex flex-col mt-6">
                 <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
