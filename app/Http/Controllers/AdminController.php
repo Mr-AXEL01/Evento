@@ -35,4 +35,8 @@ class AdminController extends Controller
         return back()->with('success', 'User has been authorized.');
     }
 
+    public function categories() {
+        return view('admin.categories');
+    }
+
 }
