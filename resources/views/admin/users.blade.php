@@ -21,11 +21,6 @@
                                     </th>
 
                                     <th scope="col"
-                                        class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-sky-500">
-                                        Picture
-                                    </th>
-
-                                    <th scope="col"
                                         class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-sky-500">
                                         Name
                                     </th>
@@ -51,31 +46,29 @@
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-orange-200 " id="users-container">
-{{--                                @foreach($users as $user)--}}
+                                @foreach($users as $user)
                                     <tr>
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">1</td>
-                                        <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                                            <div><img src="https://pics.craiyon.com/2023-07-02/a9c38719ebdd4004b7eeec1723404423.webp" alt="" class="w-8 h-8 rounded-full"></div>
+                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">{{$user->id}}</td>
+                                        <td class="px-12 py-4 text-sm flex items-center font-medium whitespace-nowrap">
+                                            <img src="{{ asset('storage/image/') . $user->picture }}" alt="" class="w-8 h-8 rounded-full mr-2">
+                                            <div class="text-sm font-medium">{{ $user->name }}</div>
                                         </td>
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">userName</td>
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">user@test.com</td>
+                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">{{ $user->email }}</td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-{{--                                            @if($user->hasRole('admin'))--}}
-{{--                                                <div class="text-sm text-rose-500 bg-rose-500/20 w-fit px-4 py-1 rounded-2xl">admin</div>--}}
-{{--                                            @elseif($user->hasRole('artisan'))--}}
-{{--                                                <div class="text-sm text-green-500 bg-green-400/20 w-fit px-4 py-1 rounded-2xl">Artisan</div>--}}
-{{--                                            @else--}}
-                                                <div class="text-sm text-blue-500 bg-blue-400/20 w-fit px-4 py-1 rounded-2xl">Client</div>
-{{--                                            @endif--}}
+                                            @if($user->role == 'organiser')
+                                                <div class="text-sm text-green-500 bg-green-400/20 w-fit px-4 py-1 rounded-2xl">Organiser</div>
+                                            @else
+                                                <div class="text-sm text-blue-500 bg-blue-400/20 w-fit px-4 py-1 rounded-2xl">Customer</div>
+                                            @endif
                                         </td>
-                                        <td class="px-4 py-4 text-sm whitespace-nowrap">03/07/2024</td>
-                                        <td class="px-4 py-4 text-sm whitespace-nowrap">03/07/2024</td>
+                                        <td class="px-4 py-4 text-sm whitespace-nowrap">{{$user->created_at}}</td>
+                                        <td class="px-4 py-4 text-sm whitespace-nowrap">{{$user->updated_at}}</td>
                                         <td class="flex  gap-2 px-4 py-4 text-sm whitespace-nowrap text-center">
                                             <form action="" method="POST">
                                                 @csrf
 {{--                                                @if ($user->isSuspended())--}}
                                                     <button type="submit" class="px-2 py-2 bg-green-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-green-500 confirmation-link">
-                                                        <i class="fa-solid fa-user-check" style="color: #ffffff;"></i>
+                                                        <i class="fa-solid fa-user-check" style="color: #000000;"></i>
                                                     </button>
 {{--                                                @else--}}
 {{--                                                    <button type="submit" class="px-2 py-2 bg-yellow-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-yellow-500 confirmation-link">--}}
@@ -85,8 +78,7 @@
                                             </form>
                                         </td>
                                     </tr>
-{{--                                @endforeach--}}
-
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
