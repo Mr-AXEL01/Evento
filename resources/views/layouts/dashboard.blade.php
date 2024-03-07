@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-{{--    <link rel="stylesheet" href="../css/artisan.css">--}}
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
 <x-nav-dash/>
@@ -19,6 +19,6 @@
 
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="../js/artisan.js"></script>
+<script src="../js/admin.js"></script>
 </body>
 </html>
