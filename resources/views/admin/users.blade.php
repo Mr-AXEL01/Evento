@@ -55,12 +55,21 @@
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$user->created_at}}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$user->updated_at}}</td>
                                         <td class="flex gap-2 px-4 py-4 text-sm text-center align-middle whitespace-nowrap">
-                                            <form action="" method="POST">
-                                                @csrf
-                                                <button type="submit" class="px-2 py-2 bg-yellow-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-yellow-500 confirmation-link">
-                                                    <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i>
-                                                </button>
-                                            </form>
+                                                @if ($user->status == 'banned')
+                                                <form action="{{ route('users.unsuspend', $user) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="px-2 py-2 bg-green-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-green-500 confirmation-link">
+                                                        <i class="fa-solid fa-user-check" style="color: #ffffff;"></i>
+                                                    </button>
+                                                </form>
+                                                @else
+                                                <form action="{{ route('users.suspend', $user) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="px-2 py-2 bg-yellow-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-yellow-500 confirmation-link">
+                                                        <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

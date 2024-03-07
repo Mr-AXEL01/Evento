@@ -25,6 +25,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+Route::post('/admin/{user}/suspend', [AdminController::class, 'suspend'])->name('users.suspend');
+Route::post('/admin/{user}/unsuspend', [AdminController::class, 'unsuspend'])->name('users.unsuspend');
 
 
 Route::get('/customer/dashboard', function () {
