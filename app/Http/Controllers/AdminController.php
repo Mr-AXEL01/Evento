@@ -27,6 +27,12 @@ class AdminController extends Controller
         return back()->with('success', 'User has been banned.');
     }
 
+    public function unsuspend(User $user)
+    {
+        $user->status = 'active';
+        $user->save();
 
+        return back()->with('success', 'User has been authorized.');
+    }
 
 }
