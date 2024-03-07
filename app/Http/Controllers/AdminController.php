@@ -18,4 +18,6 @@ class AdminController extends Controller
         return view('admin.users', compact('users'));
     }
 
+
+
 }

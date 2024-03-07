@@ -47,21 +47,23 @@ class LoginRequest extends FormRequest
 
         $user = User::where('email', $credentials['email'])->first();
 
-        if (!$user) {
-            // User not found, simulate authentication failure
+        if (!$user)
+        {
             RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
         }
 
-        if ($user->status === 'banned') {
+        if ($user->status === 'banned')
+        {
             throw ValidationException::withMessages([
-                'email' => trans('auth.banned'),
+                'email' => trans("can't log in , you are banned "),
             ]);
         }
 
-        if (! Auth::attempt($credentials, $remember)) {
+        if (! Auth::attempt($credentials, $remember))
+        {
             RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
