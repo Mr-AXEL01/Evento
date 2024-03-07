@@ -25,6 +25,10 @@ Route::get('/dashboard', function () {
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('admin.dashboard');
+Route::get('/admin/users', function () {
+    return view('admin.users');
+})->middleware(['auth', 'verified'])->name('admin.users');
+
 
 Route::get('/customer/dashboard', function () {
     return view('customer.dashboard');
