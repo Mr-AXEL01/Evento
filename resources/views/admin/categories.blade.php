@@ -45,21 +45,21 @@
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{$category->id}}</td>
                                         <td class="px-12 py-4 flex text-sm font-medium items-center justify-center whitespace-nowrap">
-                                            <img src="{{ asset('storage/image/' . $category->picture) }}" alt="User Picture" class="w-8 h-8 rounded-full mr-2">
-                                            <div class="text-sm font-medium">{{ $category->name }}</div>
+                                            <img src="{{ asset('storage/image/' . $category->cover) }}" alt="User Picture" class="w-12 h-12 rounded-full mr-2">
+                                            <div class="text-sm font-medium">{{ $category->title }}</div>
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $category->description }}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->created_at}}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->updated_at}}</td>
-                                        <td class="flex gap-2 px-4 py-4 text-sm text-center align-middle whitespace-nowrap">
-                                                <form action="{{ route('category.edit', $category) }}" method="POST">
+                                        <td class="flex gap-2 px-4 py-4 text-sm text-center justify-center  align-middle whitespace-nowrap">
+                                                <form action="" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="px-2 py-2 bg-green-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-green-500 confirmation-link">
-                                                        <i class="fa-solid fa-user-check" style="color: #ffffff;"></i>
+                                                    <button type="submit" class="px-2 py-2 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-green-500 confirmation-link">
+                                                        <i class="fa-solid fa-pen-nib"></i>
                                                     </button>
                                                 </form>
 
-                                                <form action="{{ route('users.destroy', $category) }}" method="POST">
+                                                <form action="" method="POST">
                                                     @csrf
                                                     <button type="submit" class="px-2 py-2 bg-yellow-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-yellow-500 confirmation-link">
                                                         <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i>

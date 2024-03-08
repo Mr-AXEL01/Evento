@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="../css/admin.css">
+{{--    <link rel="stylesheet" href="../css/admin.css">--}}
 </head>
 <body>
 <x-nav-dash/>

@@ -23,17 +23,19 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'cover' => 'image|mimes:jpeg,png,jpg,gif',
+            'title' => ['required', 'string', 'max:255'],
+            'description' => 'required',
+            'cover' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
         ]);
 
-        if ($request->hasFile('cover')) {
-            $coverPath = $request->file('cover')->store('public/image');
-            $validatedData['cover'] = str_replace('public/', 'storage/', $coverPath);
-        }
+        $coverName = time() . '.' . $request->file('cover')->extension();
+        $request->file('cover')->storeAs('public/image', $coverName);
 
-        Category::create($validatedData);
+        Category::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'cover' => $coverName,
+        ]);
 
         return redirect()->route('admin.categories')->with('success', 'Category created successfully.');
     }
