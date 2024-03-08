@@ -55,7 +55,7 @@ class CategoryController extends Controller
 
         if ($request->hasFile('cover')) {
             $coverName = time() . '.' . $request->file('cover')->getClientOriginalExtension();
-            $request->file('cover')->storeAs('public/categories', $coverName);
+            $request->file('cover')->storeAs('public/image', $coverName);
             $category->cover = $coverName;
         }
 
