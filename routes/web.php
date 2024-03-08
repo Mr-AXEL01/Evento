@@ -31,8 +31,9 @@ Route::post('/admin/{user}/unsuspend', [AdminController::class, 'unsuspend'])->n
 Route::get('/admin/categories', [CategoryController::class, 'categories'])->name('admin.categories');
 Route::get('/admin/create_category',[CategoryController::class, 'create'])->name('admin.category.create');
 Route::post('/admin/create_category', [CategoryController::class, 'store'])->name('category.store');
-Route::get('admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::get('admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
 Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
+Route::delete('admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
 
 
 Route::get('/customer/dashboard', function () {

@@ -70,7 +70,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('admin.create_category')->with('success', 'Category deleted successfully.');
+        return redirect()->route('admin.categories')->with('success', 'Category deleted successfully.');
     }
 
 }

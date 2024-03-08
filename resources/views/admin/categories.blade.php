@@ -53,12 +53,13 @@
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->updated_at}}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">
                                             <div class="flex justify-center gap-2">
-                                                <a href="{{ route('categories.edit', $category) }}" class="inline-flex items-center justify-center px-2 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50">
+                                                <a href="{{ route('admin.categories.edit', $category) }}" class="inline-flex items-center justify-center px-2 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50">
                                                     <i class="fa-solid fa-pen-to-square" style="color:green"></i>
                                                 </a>
 
-                                                <form action="" method="POST">
+                                                <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');">
                                                     @csrf
+                                                    @method('DELETE')
                                                     <button type="submit" class="inline-flex items-center justify-center px-2 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50">
                                                         <i class="fa-solid fa-trash" style="color:red"></i>
                                                     </button>
