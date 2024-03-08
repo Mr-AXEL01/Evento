@@ -20,13 +20,10 @@
                                         Name
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
-                                        Email
+                                        Descreption
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
-                                        Role
-                                    </th>
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
-                                        Joined at
+                                        Created at
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
                                         Updated at
@@ -37,39 +34,30 @@
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-orange-200" id="users-container">
-                                @foreach($users as $user)
+                                @foreach($categories as $category)
                                     <tr>
-                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{$user->id}}</td>
+                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{$category->id}}</td>
                                         <td class="px-12 py-4 flex text-sm font-medium items-center justify-center whitespace-nowrap">
-                                            <img src="{{ asset('storage/image/' . $user->picture) }}" alt="User Picture" class="w-8 h-8 rounded-full mr-2">
-                                            <div class="text-sm font-medium">{{ $user->name }}</div>
+                                            <img src="{{ asset('storage/image/' . $category->picture) }}" alt="User Picture" class="w-8 h-8 rounded-full mr-2">
+                                            <div class="text-sm font-medium">{{ $category->name }}</div>
                                         </td>
-                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $user->email }}</td>
-                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">
-                                            @if($user->role == 'organiser')
-                                                <div class="text-sm text-green-500 bg-green-400/20 w-fit px-4 py-1 rounded-2xl">Organiser</div>
-                                            @else
-                                                <div class="text-sm text-blue-500 bg-blue-400/20 w-fit px-4 py-1 rounded-2xl">Customer</div>
-                                            @endif
-                                        </td>
-                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$user->created_at}}</td>
-                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$user->updated_at}}</td>
+                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $category->description }}</td>
+                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->created_at}}</td>
+                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->updated_at}}</td>
                                         <td class="flex gap-2 px-4 py-4 text-sm text-center align-middle whitespace-nowrap">
-                                            @if ($user->status == 'banned')
-                                                <form action="{{ route('users.unsuspend', $user) }}" method="POST">
+                                                <form action="{{ route('category.edit', $category) }}" method="POST">
                                                     @csrf
                                                     <button type="submit" class="px-2 py-2 bg-green-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-green-500 confirmation-link">
                                                         <i class="fa-solid fa-user-check" style="color: #ffffff;"></i>
                                                     </button>
                                                 </form>
-                                            @else
-                                                <form action="{{ route('users.suspend', $user) }}" method="POST">
+
+                                                <form action="{{ route('users.destroy', $category) }}" method="POST">
                                                     @csrf
                                                     <button type="submit" class="px-2 py-2 bg-yellow-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-yellow-500 confirmation-link">
                                                         <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i>
                                                     </button>
                                                 </form>
-                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
