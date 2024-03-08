@@ -40,4 +40,9 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories')->with('success', 'Category created successfully.');
     }
 
+    public function edit(Category $category)
+    {
+        return view('categories.edit', compact('category'));
+    }
+
 }
