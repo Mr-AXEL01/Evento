@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
+    public function create() {
+        return view('admin.create_category');
+    }
+
     public function categories()
     {
         $categories = Category::all();
