@@ -20,4 +20,13 @@ class CategoryController extends Controller
         return view('admin.categories', compact('categories'));
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'cover' => 'image|mimes:jpeg,png,jpg,gif',
+        ]);
+    }
+
 }
