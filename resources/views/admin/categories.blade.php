@@ -35,8 +35,8 @@
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
                                         Updated at
                                     </th>
-                                    <th scope="col" class="relative py-3.5 px-4">
-                                        <span class="sr-only">Action</span>
+                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
+                                        Action
                                     </th>
                                 </tr>
                                 </thead>
@@ -51,20 +51,21 @@
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $category->description }}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->created_at}}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->updated_at}}</td>
-                                        <td class="flex gap-2 px-4 py-4 text-sm text-center justify-center  align-middle whitespace-nowrap">
+                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">
+                                            <div class="flex justify-center gap-2">
                                                 <form action="" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="px-2 py-2 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-green-500 confirmation-link">
-                                                        <i class="fa-solid fa-pen-nib"></i>
+                                                    <button type="submit" class="inline-flex items-center justify-center px-2 py-2 rounded-lg transition duration-200   focus:outline-none focus:ring  focus:ring-opacity-50">
+                                                        <i class="fa-solid fa-pen-to-square" style="color:green"></i>
                                                     </button>
                                                 </form>
-
                                                 <form action="" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="px-2 py-2 bg-yellow-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-yellow-500 confirmation-link">
-                                                        <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i>
+                                                    <button type="submit" class="inline-flex items-center justify-center px-2 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50">
+                                                        <i class="fa-solid fa-trash" style="color:red"></i>
                                                     </button>
                                                 </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
