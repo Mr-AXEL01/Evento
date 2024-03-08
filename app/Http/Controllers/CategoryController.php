@@ -42,7 +42,28 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('categories.edit', compact('category'));
+        return view('admin.create_category', compact('category'));
+    }
+
+    public function update(Request $request, Category $category)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'cover' => 'image|mimes:jpeg,png,jpg,gif,webp',
+        ]);
+
+        if ($request->hasFile('cover')) {
+            $coverName = time() . '.' . $request->file('cover')->getClientOriginalExtension();
+            $request->file('cover')->storeAs('public/categories', $coverName);
+            $category->cover = $coverName;
+        }
+
+        $category->title = $request->title;
+        $category->description = $request->description;
+        $category->save();
+
+        return redirect()->route('admin.categories')->with('success', 'Category updated successfully.');
     }
 
 }

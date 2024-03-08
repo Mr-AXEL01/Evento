@@ -6,7 +6,7 @@
             <div class="max-w-2xl mx-auto">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h2 class="text-xl font-semibold mb-4">{{ isset($category) ? 'Edit Category' : 'Create New Category' }}</h2>
-                    <form method="post" action="{{ isset($category) ? route('category.update', $category) : route('category.store') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+                    <form method="post" action="{{ isset($category) ? route('admin.categories.update', $category) : route('category.store') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
                         @csrf
                         @if(isset($category))
                             @method('PUT')
