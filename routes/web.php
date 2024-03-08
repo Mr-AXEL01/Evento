@@ -29,6 +29,7 @@ Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users
 Route::post('/admin/{user}/suspend', [AdminController::class, 'suspend'])->name('users.suspend');
 Route::post('/admin/{user}/unsuspend', [AdminController::class, 'unsuspend'])->name('users.unsuspend');
 Route::get('/admin/categories', [CategoryController::class, 'categories'])->name('admin.categories');
+Route::get('/admin/create_category',[CategoryController::class, 'create'])->name('admin.category.create');
 
 
 Route::get('/customer/dashboard', function () {

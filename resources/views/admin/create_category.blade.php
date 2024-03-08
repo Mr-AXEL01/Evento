@@ -2,76 +2,53 @@
 
 @section('content')
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main">
-        <div class=" p-5 mx-5 rounded-lg">
-            <div class="flex justify-between">
-                <div class="uppercase text-sky-900 font-bold text-2xl">
-                    Categories
-                </div>
-                <div>
-                    <a href="/admin/create_category" class="bg-sky-400 rounded-full p-2">
-                        Add Category
-                    </a>
-                </div>
-            </div>
-            <div class="flex flex-col mt-6">
-                <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div class="overflow-hidden border  md:rounded-lg">
-                            <table class="min-w-full divide-y divide-Fuchsia-900">
-                                <thead class="bg-neutral-800">
-                                <tr>
-                                    <th scope="col" class="py-3.5 px-4 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
-                                        <span>ID_category</span>
-                                    </th>
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
-                                        Name
-                                    </th>
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
-                                        Descreption
-                                    </th>
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
-                                        Created at
-                                    </th>
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
-                                        Updated at
-                                    </th>
-                                    <th scope="col" class="relative py-3.5 px-4">
-                                        <span class="sr-only">Action</span>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-orange-200" id="users-container">
-                                @foreach($categories as $category)
-                                    <tr>
-                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{$category->id}}</td>
-                                        <td class="px-12 py-4 flex text-sm font-medium items-center justify-center whitespace-nowrap">
-                                            <img src="{{ asset('storage/image/' . $category->picture) }}" alt="User Picture" class="w-8 h-8 rounded-full mr-2">
-                                            <div class="text-sm font-medium">{{ $category->name }}</div>
-                                        </td>
-                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $category->description }}</td>
-                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->created_at}}</td>
-                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->updated_at}}</td>
-                                        <td class="flex gap-2 px-4 py-4 text-sm text-center align-middle whitespace-nowrap">
-                                            <form action="{{ route('category.edit', $category) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="px-2 py-2 bg-green-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-green-500 confirmation-link">
-                                                    <i class="fa-solid fa-user-check" style="color: #ffffff;"></i>
-                                                </button>
-                                            </form>
+        <div class="container mx-auto py-6">
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4">Create New Category</h2>
+                    <form method="post" action="" class="mt-6 space-y-6">
+                        @csrf
 
-                                            <form action="{{ route('users.destroy', $category) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="px-2 py-2 bg-yellow-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-yellow-500 confirmation-link">
-                                                    <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                        <div>
+                            <x-input-label for="title" :value="__('Title')" />
+                            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" autocomplete="title" />
+                            <x-input-error :messages="$errors->updatePassword->get('title')" class="mt-2" />
                         </div>
-                    </div>
+
+                        <div>
+                            <x-input-label for="description" :value="__('Description')" />
+                            <textarea  id="description" name="description" type="description" class="mt-1 p-2 text-base rounded-[10px] textarea h-[100px] block w-full resize-none" required></textarea>
+                            <x-input-error class="mt-2" :messages="$errors->get('description')" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-black">
+                                Image
+                            </label>
+                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="space-y-1 text-center">
+                                    <svg class="mx-auto h-12 w-12 text-black" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <div class="flex text-sm text-gray-600">
+                                        <label for="cover" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                            <span class="">Upload a file</span>
+                                            <input id="cover" name="cover" type="file" class="sr-only">
+                                        </label>
+                                        <p class="pl-1 text-black">or drag and drop</p>
+                                    </div>
+                                    <p class="text-xs text-black">
+                                        PNG, JPG, GIF up to 10MB
+                                    </p>
+                                </div>
+                            </div>
+                            <x-input-error class="mt-2" :messages="$errors->get('picture')" />
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <x-primary-button>{{ __('Save') }}</x-primary-button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
