@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,7 @@ Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adm
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::post('/admin/{user}/suspend', [AdminController::class, 'suspend'])->name('users.suspend');
 Route::post('/admin/{user}/unsuspend', [AdminController::class, 'unsuspend'])->name('users.unsuspend');
-Route::get('/admin/categories', [AdminController::class, 'categories'])->name('admin.categories');
+Route::get('/admin/categories', [CategoryController::class, 'categories'])->name('admin.categories');
 
 
 Route::get('/customer/dashboard', function () {

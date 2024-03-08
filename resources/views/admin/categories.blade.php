@@ -3,8 +3,15 @@
 @section('content')
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main">
         <div class=" p-5 mx-5 rounded-lg">
-            <div class="uppercase text-sky-900 font-bold text-2xl">
-                Categories
+            <div class="flex justify-between">
+                <div class="uppercase text-sky-900 font-bold text-2xl">
+                    Categories
+                </div>
+                <div>
+                    <a href="/admin/create_category" class="bg-sky-400 rounded-full p-2">
+                        Add Category
+                    </a>
+                </div>
             </div>
             <div class="flex flex-col mt-6">
                 <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
