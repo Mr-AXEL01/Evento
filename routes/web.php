@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrganiserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,10 +38,8 @@ Route::put('admin/categories/{category}', [CategoryController::class, 'update'])
 Route::delete('admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
 
 #------------------- Organiser ----------------------#
-Route::get('/organiser/dashboard', function () {
-    return view('organiser.dashboard');
-})->middleware(['auth', 'verified'])->name('organiser.dashboard');
-Route::get('/organiser/users', [OrganiserController::class, 'events'])->name('organiser.events');
+Route::get('/organiser/dashboard', [OrganiserController::class, 'dashboard'])->name('organiser.dashboard');
+Route::get('/organiser/events', [OrganiserController::class, 'events'])->name('organiser.events');
 
 #------------------- Customer ----------------------#
 Route::get('/customer/dashboard', function () {
