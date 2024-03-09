@@ -40,6 +40,7 @@ Route::delete('admin/categories/{category}', [CategoryController::class, 'destro
 #------------------- Organiser ----------------------#
 Route::get('/organiser/dashboard', [OrganiserController::class, 'dashboard'])->name('organiser.dashboard');
 Route::get('/organiser/events', [OrganiserController::class, 'events'])->name('organiser.events');
+Route::get('/organiser/create_event',[OrganiserController::class, 'create'])->name('organiser.event.create');
 
 #------------------- Customer ----------------------#
 Route::get('/customer/dashboard', function () {
