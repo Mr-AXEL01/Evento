@@ -15,7 +15,7 @@
                         <div>
                             <x-input-label for="title" :value="__('Title')" />
                             <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" autocomplete="title" value="{{ isset($category) ? $category->title : old('title') }}" />
-                            <x-input-error :messages="$errors->updatePassword->get('title')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
 
                         <div>
