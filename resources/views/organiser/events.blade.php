@@ -8,8 +8,10 @@
                     Events
                 </div>
                 <div>
-                    <a href="{{ route('admin.event.create') }}" class="bg-sky-400 rounded-full p-2">
-                        Add Event
+                    <a href="{{ route('organiser.event.create') }}">
+                        <x-primary-button class="rounded-full p-2 ">
+                            Add Event
+                        </x-primary-button>
                     </a>
                 </div>
             </div>
