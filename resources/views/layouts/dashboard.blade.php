@@ -15,6 +15,8 @@
 <x-nav-dash/>
 @if(Auth::user()->role == 'admin')
     <x-sidebar-admin-dash/>
+@elseif(Auth::user()->role == 'organiser')
+    <x-sidebar-organiser-dash/>
 @endif
 
 

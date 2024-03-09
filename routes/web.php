@@ -40,7 +40,7 @@ Route::delete('admin/categories/{category}', [CategoryController::class, 'destro
 Route::get('/organiser/dashboard', function () {
     return view('organiser.dashboard');
 })->middleware(['auth', 'verified'])->name('organiser.dashboard');
-
+Route::get('/organiser/users', [OrganiserController::class, 'events'])->name('organiser.events');
 
 #------------------- Customer ----------------------#
 Route::get('/customer/dashboard', function () {
