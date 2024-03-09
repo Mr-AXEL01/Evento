@@ -50,4 +50,34 @@ class EventController extends Controller
         $categories = Category::all();
         return view('organiser.create_event', compact('event','categories'));
     }
+
+    public function update(Request $request, Event $event)
+    {
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => 'required',
+            'location' => ['required', 'string', 'max:255'],
+            'date' => ['required', 'date'],
+            'place' => ['required', 'integer', 'min:1'],
+            'category' => ['required', 'exists:categories,id'],
+            'cover' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
+        ]);
+
+        if ($request->hasFile('cover')) {
+            $coverName = time() . '.' . $request->file('cover')->getClientOriginalExtension();
+            $request->file('cover')->storeAs('public/image', $coverName);
+            $event->cover = $coverName;
+        }
+
+        $event->title       = $request->title;
+        $event->description = $request->description;
+        $event->location    = $request->location;
+        $event->date        = $request->date;
+        $event->place       = $request->place;
+        $event->category    = $request->category;
+        $event->cover       = $coverName;
+        $event->save();
+
+        return redirect()->route('organiser.events')->with('success', 'Event updated successfully.');
+    }
 }

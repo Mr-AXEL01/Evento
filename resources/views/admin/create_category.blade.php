@@ -41,7 +41,7 @@
                                     <p class="text-xs text-black">PNG, JPG, GIF</p>
                                 </div>
                             </div>
-                            <x-input-error class="mt-2" :messages="$errors->get('picture')" />
+                            <x-input-error class="mt-2" :messages="$errors->get('cover')" />
                         </div>
 
                         <div class="flex items-center gap-4">
