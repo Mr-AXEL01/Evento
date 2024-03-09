@@ -38,7 +38,7 @@
 
                         <div>
                             <x-input-label for="place" :value="__('Place')" />
-                            <x-text-input id="place" name="place" type="text" class="mt-1 block w-full" autocomplete="place" value="{{ isset($event) ? $event->place : old('place') }}" />
+                            <x-text-input id="place" name="place" type="number" class="mt-1 block w-full" autocomplete="place" value="{{ isset($event) ? $event->place : old('place') }}" />
                             <x-input-error :messages="$errors->get('place')" class="mt-2" />
                         </div>
 
