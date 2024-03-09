@@ -79,4 +79,11 @@ class EventController extends Controller
 
         return redirect()->route('organiser.events')->with('success', 'Event updated successfully.');
     }
+
+    public function destroy(Event $event)
+    {
+        $event->delete();
+
+        return redirect()->route('organiser.events')->with('success', 'Event deleted successfully.');
+    }
 }

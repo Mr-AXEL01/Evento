@@ -75,7 +75,7 @@
                                                     <i class="fa-solid fa-pen-to-square" style="color:green"></i>
                                                 </a>
 
-                                                <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?');">
+                                                <form action="{{ route('organiser.events.destroy', $event ) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="inline-flex items-center justify-center px-2 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50">

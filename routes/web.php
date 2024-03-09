@@ -45,6 +45,7 @@ Route::get('/organiser/create_event',[EventController::class, 'create'])->name('
 Route::post('/organiser/create_event', [EventController::class, 'store'])->name('organiser.event.store');
 Route::get('organiser/events/{event}/edit', [EventController::class, 'edit'])->name('organiser.events.edit');
 Route::put('organiser/events/{event}', [EventController::class, 'update'])->name('organiser.events.update');
+Route::delete('organiser/events/{event}', [EventController::class, 'destroy'])->name('organiser.events.destroy');
 
 #------------------- Customer ----------------------#
 Route::get('/customer/dashboard', function () {
