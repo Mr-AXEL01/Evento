@@ -42,6 +42,9 @@ Route::delete('admin/categories/{category}', [CategoryController::class, 'destro
 Route::get('/organiser/dashboard', [OrganiserController::class, 'dashboard'])->name('organiser.dashboard');
 Route::get('/organiser/events', [OrganiserController::class, 'events'])->name('organiser.events');
 Route::get('/organiser/create_event',[EventController::class, 'create'])->name('organiser.event.create');
+Route::post('/organiser/create_event', [CategoryController::class, 'store'])->name('organiser.event.store');
+Route::get('organiser/events/{event}/edit', [CategoryController::class, 'edit'])->name('organiser.events.edit');
+Route::put('organiser/events/{event}', [CategoryController::class, 'update'])->name('organiser.events.update');
 
 #------------------- Customer ----------------------#
 Route::get('/customer/dashboard', function () {
