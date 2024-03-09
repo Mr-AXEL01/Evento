@@ -22,13 +22,14 @@ class EventController extends Controller
             'location' => ['required', 'string', 'max:255'],
             'date' => ['required', 'date'],
             'place' => ['required', 'integer', 'min:1'],
+            'category' => ['required'],
             'cover' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
         ]);
 
         $coverName = time() . '.' . $request->file('cover')->extension();
         $request->file('cover')->storeAs('public/image', $coverName);
 
-        $organiserID = Auth::id;
+        $organiserID = Auth::id();
 
         Event::create([
             'title' => $request->title,

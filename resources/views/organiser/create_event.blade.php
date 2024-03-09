@@ -20,7 +20,7 @@
 
                         <div>
                             <x-input-label for="description" :value="__('Description')" />
-                            <textarea id="description" name="description" class="mt-1 p-2 text-base rounded-[10px] textarea h-[100px] block w-full resize-none" required>{{ isset($event) ? $event->description : old('description') }}</textarea>
+                            <textarea id="description" name="description" class="mt-1 p-2 text-base rounded-[10px] textarea h-[100px] block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 resize-none" required>{{ isset($event) ? $event->description : old('description') }}</textarea>
                             <x-input-error class="mt-2" :messages="$errors->get('description')" />
                         </div>
 
@@ -44,16 +44,17 @@
 
                         <div>
                             <x-input-label for="category" :value="__('Category')" />
-                            <select id="category" name="category" class="mt-1 block w-full" autocomplete="category">
+                            <select id="category" name="category" class="mt-1 p-2 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" autocomplete="category">
                                 <option value="">Select a category</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}" {{ isset($event) && $event->category_id == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
+                                        {{ $category->title }}
                                     </option>
                                 @endforeach
                             </select>
                             <x-input-error :messages="$errors->get('category')" class="mt-2" />
                         </div>
+
 
                         <div>
                             <label class="block text-sm font-medium text-black">Image</label>

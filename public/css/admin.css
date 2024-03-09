@@ -215,10 +215,10 @@ table {
 Remove the inheritance of text transform in Edge and Firefox.
 */
 
-button,
-select {
-    text-transform: none;
-}
+/*button,*/
+/*select {*/
+/*    text-transform: none;*/
+/*}*/
 
 /*
 1. Correct the inability to style clickable types in iOS and Safari.
@@ -1276,20 +1276,20 @@ video {
     background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
-.group.selected .group-\[\.selected\]\:bg-gray-950{
-    --tw-bg-opacity: 1;
-    background-color: rgb(3 7 18 / var(--tw-bg-opacity));
-}
+/*.group.selected .group-\[\.selected\]\:bg-gray-950{*/
+/*    --tw-bg-opacity: 1;*/
+/*    background-color: rgb(3 7 18 / var(--tw-bg-opacity));*/
+/*}*/
 
 .group.active .group-\[\.active\]\:text-white{
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.group.selected .group-\[\.selected\]\:text-gray-100{
-    --tw-text-opacity: 1;
-    color: rgb(243 244 246 / var(--tw-text-opacity));
-}
+/*.group.selected .group-\[\.selected\]\:text-gray-100{*/
+/*    --tw-text-opacity: 1;*/
+/*    color: rgb(243 244 246 / var(--tw-text-opacity));*/
+/*}*/
 
 @media (min-width: 768px){
     .md\:ml-64{
@@ -1453,7 +1453,7 @@ video {
     display: block;
     position: relative;
     cursor: pointer;
-    font-size: 20px;
+    /*font-size: 20px;*/
     user-select: none;
 }
 
