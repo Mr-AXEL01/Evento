@@ -38,9 +38,18 @@ class AdminController extends Controller
 
     public function events()
     {
-        $events = Event::where('status', '==', 'pending')->get();
+        $events = Event::where('status', 'pending')->get();
 
+//        dd($events);
         return view('admin.events', compact('events'));
+    }
+
+    public function eventsReview(Event $event, $status)
+    {
+        $event->status = $status;
+        $event->save();
+
+        return redirect()->back()->with('success', 'Event status updated successfully.');
     }
 
 }
