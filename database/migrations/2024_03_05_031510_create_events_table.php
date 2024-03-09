@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('place');
             $table->enum('status',['approved','pending','refused'])->default('pending');
+            $table->enum('reservation_mode',['automatic','manual'])->default('manual');
             $table->foreignId('organiser_id')->constrained('organisers')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
