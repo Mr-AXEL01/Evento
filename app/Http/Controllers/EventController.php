@@ -29,7 +29,7 @@ class EventController extends Controller
         $coverName = time() . '.' . $request->file('cover')->extension();
         $request->file('cover')->storeAs('public/image', $coverName);
 
-        $organiserID = Auth::id();
+        $organiserID = Auth::user()->organiser->id;
 
         Event::create([
             'title' => $request->title,

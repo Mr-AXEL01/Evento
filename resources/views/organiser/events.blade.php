@@ -41,6 +41,9 @@
                                         Place
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
+                                        Status
+                                    </th>
+                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
                                         Action
                                     </th>
                                 </tr>
@@ -50,20 +53,29 @@
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{$event->id}}</td>
                                         <td class="px-12 py-4 flex text-sm font-medium items-center justify-center whitespace-nowrap">
-                                            <img src="{{ asset('storage/image/' . $event->cover) }}" alt="User Picture" class="w-8 h-8 rounded-full mr-2">
-                                            <div class="text-sm font-medium">{{ $event->name }}</div>
+                                            <img src="{{ asset('storage/image/' . $event->cover) }}" alt="User Picture" class="w-12 h-10 rounded-full mr-2">
+                                            <div class="text-sm font-medium">{{ $event->title }}</div>
                                         </td>
-                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $event->description }}</td>
+                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle">{{ $event->description }}</td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $event->location }}</td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $event->date }}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$event->place}}</td>
+                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">
+                                            @if($event->status == 'pending')
+                                                <div class="text-sm text-orange-500 bg-orange-400/20 w-fit px-4 py-1 rounded-2xl">Pending</div>
+                                            @elseif($event->status == 'approved')
+                                                <div class="text-sm text-blue-500 bg-green-400/20 w-fit px-4 py-1 rounded-2xl">Approved</div>
+                                            @else
+                                                <div class="text-sm text-blue-500 bg-red-400/20 w-fit px-4 py-1 rounded-2xl">Refused</div>
+                                            @endif
+                                        </td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">
                                             <div class="flex justify-center gap-2">
                                                 <a href="{{ route('organiser.events.edit', $event) }}" class="inline-flex items-center justify-center px-2 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50">
                                                     <i class="fa-solid fa-pen-to-square" style="color:green"></i>
                                                 </a>
 
-                                                <form action="{{ route('organiser.events.destroy', $event) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?');">
+                                                <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="inline-flex items-center justify-center px-2 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50">
