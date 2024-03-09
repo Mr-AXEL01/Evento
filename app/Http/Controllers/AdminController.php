@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,11 @@ class AdminController extends Controller
         return back()->with('success', 'User has been authorized.');
     }
 
+    public function events()
+    {
+        $events = Event::where('status', '==', 'pending')->get();
 
+        return view('admin.events', compact('events'));
+    }
 
 }
