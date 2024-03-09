@@ -31,8 +31,8 @@
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
                                         Updated at
                                     </th>
-                                    <th scope="col" class="relative py-3.5 px-4">
-                                        <span class="sr-only">Action</span>
+                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
+                                        Action
                                     </th>
                                 </tr>
                                 </thead>

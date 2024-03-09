@@ -7,7 +7,7 @@
 
         <div id="menu" class="flex flex-col space-y-2 ">
             <a
-                href="/admin/dashboard"
+                href="{{ route('admin.dashboard') }}"
                 class="text-sm font-medium text-gray-700 py-3 px-2 hover:bg-[#831843] hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out mt-4"
             >
                 <svg
@@ -23,7 +23,7 @@
                 <span class="">Dashboard</span>
             </a>
             <a
-                href="/admin/users"
+                href="{{ route('admin.users') }}"
                 class="text-sm font-medium text-gray-700 py-3 px-2 hover:bg-[#831843] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
                 <svg
@@ -39,7 +39,7 @@
                 <span class="">Users</span>
             </a>
             <a
-                href="/admin/categories"
+                href="{{ route('admin.categories') }}"
                 class="text-sm font-medium text-gray-700 py-3 px-2 hover:bg-[#831843] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
                 <svg
@@ -55,45 +55,9 @@
                         clip-rule="evenodd"
                     ></path>
                 </svg>
-                <span class="">Category</span>
+                <span class="">Categories</span>
             </a>
-{{--            <a--}}
-{{--                href="/chatty"--}}
-{{--                class="text-sm font-medium text-gray-700 py-4 px-2 hover:bg-[#831843] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"--}}
-{{--            >--}}
-{{--                <svg--}}
-{{--                    class="w-6 h-6 fill-current inline-block"--}}
-{{--                    fill="currentColor"--}}
-{{--                    viewBox="0 0 20 20"--}}
-{{--                    xmlns="http://www.w3.org/2000/svg"--}}
-{{--                >--}}
-{{--                    <path--}}
-{{--                        d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"--}}
-{{--                    ></path>--}}
-{{--                    <path--}}
-{{--                        d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"--}}
-{{--                    ></path>--}}
-{{--                </svg>--}}
-{{--                <span class="">Messages</span>--}}
-{{--            </a>--}}
-{{--            <a--}}
-{{--                href=""--}}
-{{--                class="text-sm font-medium text-gray-700 py-3 px-2 hover:bg-[#831843] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"--}}
-{{--            >--}}
-{{--                <svg--}}
-{{--                    class="w-6 h-6 fill-current inline-block"--}}
-{{--                    fill="currentColor"--}}
-{{--                    viewBox="0 0 20 20"--}}
-{{--                    xmlns="http://www.w3.org/2000/svg"--}}
-{{--                >--}}
-{{--                    <path--}}
-{{--                        fill-rule="evenodd"--}}
-{{--                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"--}}
-{{--                        clip-rule="evenodd"--}}
-{{--                    ></path>--}}
-{{--                </svg>--}}
-{{--                <span class="">reservation</span>--}}
-{{--            </a>--}}
+        </div>
     </ul>
 </div>
-<div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
+

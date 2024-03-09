@@ -24,6 +24,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+#------------------- Admin ----------------------#
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::post('/admin/{user}/suspend', [AdminController::class, 'suspend'])->name('users.suspend');
@@ -35,14 +36,16 @@ Route::get('admin/categories/{category}/edit', [CategoryController::class, 'edit
 Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
 Route::delete('admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
 
-
-Route::get('/customer/dashboard', function () {
-    return view('customer.dashboard');
-})->middleware(['auth', 'verified'])->name('customer.dashboard');
-
+#------------------- Organiser ----------------------#
 Route::get('/organiser/dashboard', function () {
     return view('organiser.dashboard');
 })->middleware(['auth', 'verified'])->name('organiser.dashboard');
+
+
+#------------------- Customer ----------------------#
+Route::get('/customer/dashboard', function () {
+    return view('customer.dashboard');
+})->middleware(['auth', 'verified'])->name('customer.dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
