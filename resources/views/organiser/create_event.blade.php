@@ -43,6 +43,19 @@
                         </div>
 
                         <div>
+                            <x-input-label for="category" :value="__('Category')" />
+                            <select id="category" name="category" class="mt-1 block w-full" autocomplete="category">
+                                <option value="">Select a category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ isset($event) && $event->category_id == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('category')" class="mt-2" />
+                        </div>
+
+                        <div>
                             <label class="block text-sm font-medium text-black">Image</label>
                             <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer" onclick="document.getElementById('cover').click()">
                                 <div class="space-y-1 text-center">
