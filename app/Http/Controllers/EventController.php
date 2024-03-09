@@ -22,7 +22,7 @@ class EventController extends Controller
             'location' => ['required', 'string', 'max:255'],
             'date' => ['required', 'date'],
             'place' => ['required', 'integer', 'min:1'],
-            'category' => ['required'],
+            'category' => ['required', 'exists:categories,id'],
             'cover' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
         ]);
 
@@ -39,6 +39,7 @@ class EventController extends Controller
             'place' => $request->place,
             'cover' => $coverName,
             'organiser_id' => $organiserID,
+            'category_id' => $request->category,
         ]);
 
         return redirect()->route('organiser.events')->with('success', 'Event created successfully.');
