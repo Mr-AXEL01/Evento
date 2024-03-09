@@ -8,7 +8,7 @@
                     Categories
                 </div>
                 <div>
-                    <a href="/admin/create_category" class="bg-sky-400 rounded-full p-2">
+                    <a href="{{ route('admin.category.create') }}" class="bg-sky-400 rounded-full p-2">
                         Add Category
                     </a>
                 </div>
