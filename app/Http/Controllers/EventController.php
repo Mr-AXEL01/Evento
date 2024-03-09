@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 class EventController extends Controller
 {
     public function create() {
-        return view('organiser.create_event');
+        $categories = Category::all();
+        return view('organiser.create_event' , compact('categories'));
     }
 
     public function store(Request $request)
