@@ -44,4 +44,10 @@ class EventController extends Controller
 
         return redirect()->route('organiser.events')->with('success', 'Event created successfully.');
     }
+
+    public function edit(Event $event)
+    {
+        $categories = Category::all();
+        return view('organiser.create_event', compact('event','categories'));
+    }
 }

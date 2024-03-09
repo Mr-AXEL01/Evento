@@ -32,7 +32,8 @@
 
                         <div>
                             <x-input-label for="date" :value="__('Date')" />
-                            <x-text-input id="date" name="date" type="date" class="mt-1 block w-full" autocomplete="date" value="{{ isset($event) ? $event->date : old('date') }}" />
+                            <x-text-input id="date" name="date" type="date" class="mt-1 block w-full" autocomplete="date"
+                                          :value="isset($event) ? date('Y-m-d', strtotime($event->date)) : ''" />
                             <x-input-error :messages="$errors->get('date')" class="mt-2" />
                         </div>
 
