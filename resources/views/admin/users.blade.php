@@ -47,7 +47,7 @@
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $user->email }}</td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">
                                             @if($user->role == 'organiser')
-                                                <div class="text-sm text-green-500 bg-green-400/20 w-fit px-4 py-1 rounded-2xl">Organiser</div>
+                                                <div class="text-sm text-orange-500 bg-orange-400/20 w-fit px-4 py-1 rounded-2xl">Organiser</div>
                                             @else
                                                 <div class="text-sm text-blue-500 bg-blue-400/20 w-fit px-4 py-1 rounded-2xl">Customer</div>
                                             @endif
@@ -65,7 +65,7 @@
                                                 @else
                                                 <form action="{{ route('users.suspend', $user) }}" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="px-2 py-2 bg-yellow-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-yellow-500 confirmation-link">
+                                                    <button type="submit" class="px-2 py-2 bg-red-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-red-500 confirmation-link">
                                                         <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i>
                                                     </button>
                                                 </form>
