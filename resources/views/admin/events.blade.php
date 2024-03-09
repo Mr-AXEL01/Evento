@@ -22,6 +22,9 @@
                                         Name
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
+                                        Organiser
+                                    </th>
+                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
                                         Location
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
@@ -39,9 +42,17 @@
                                 @foreach($events as $event)
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{$event->id}}</td>
-                                        <td class="px-12 py-4 flex text-sm font-medium items-center justify-center whitespace-nowrap">
-                                            <img src="{{ asset('storage/image/' . $event->cover) }}" alt="User Picture" class="w-12 h-10 rounded-full mr-2">
-                                            <div class="text-sm font-medium">{{ $event->title }}</div>
+                                        <td class="px-12 py-4 text-sm font-medium items-center whitespace-nowrap">
+                                            <div class="flex items-center justify-center">
+                                                <img src="{{ asset('storage/image/' . $event->cover) }}" alt="Event Cover" class="w-12 h-10 rounded-full mr-2">
+                                                <div class="text-sm font-medium">{{ $event->title }}</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-12 py-4 text-sm font-medium items-center whitespace-nowrap">
+                                            <div class="flex items-center justify-center">
+                                                <img src="{{ asset('storage/image/' . $event->organiser->user->picture) }}" alt="Organiser Picture" class="w-10 h-12 rounded-full mr-2">
+                                                <div class="text-sm font-medium">{{ $event->organiser->user->name }}</div>
+                                            </div>
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $event->location }}</td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ date('d-m-Y', strtotime($event->date)) }}</td>
@@ -51,19 +62,20 @@
                                                 <form action="{{ route('admin.review.event', ['event' => $event, 'status' => 'approved']) }}" method="POST">
                                                     @csrf
                                                     @method('PATCH')
-                                                    <button type="submit" class="inline-flex items-center justify-center px-2 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50">
-                                                        Approve
+                                                    <button type="submit" class="inline-flex items-center justify-center px-3 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50 bg-green-500 hover:bg-green-600 text-white">
+                                                        <i class="fa-solid fa-check-circle mr-1"></i>
                                                     </button>
                                                 </form>
 
                                                 <form action="{{ route('admin.review.event', ['event' => $event, 'status' => 'refused']) }}" method="POST">
                                                     @csrf
                                                     @method('PATCH')
-                                                    <button type="submit" class="inline-flex items-center justify-center px-2 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50">
-                                                        Refuse
+                                                    <button type="submit" class="inline-flex items-center justify-center px-3 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50 bg-red-500 hover:bg-red-600 text-white">
+                                                        <i class="fa-solid fa-times-circle mr-1"></i>
                                                     </button>
                                                 </form>
                                             </div>
+
                                         </td>
                                     </tr>
                                 @endforeach

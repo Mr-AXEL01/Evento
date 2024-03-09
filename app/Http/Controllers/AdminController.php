@@ -38,9 +38,7 @@ class AdminController extends Controller
 
     public function events()
     {
-        $events = Event::where('status', 'pending')->get();
-
-//        dd($events);
+        $events = Event::with('organiser.user')->where('status', 'pending')->get();
         return view('admin.events', compact('events'));
     }
 
