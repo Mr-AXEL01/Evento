@@ -58,7 +58,7 @@
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle">{{ $event->description }}</td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $event->location }}</td>
-                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $event->date }}</td>
+                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ date('d-m-Y', strtotime($event->date)) }}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$event->place}}</td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">
                                             @if($event->status == 'pending')

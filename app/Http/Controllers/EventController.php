@@ -60,7 +60,7 @@ class EventController extends Controller
             'date' => ['required', 'date'],
             'place' => ['required', 'integer', 'min:1'],
             'category' => ['required', 'exists:categories,id'],
-            'cover' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
+            'cover' => ['image', 'mimes:jpeg,png,jpg,gif,webp'],
         ]);
 
         if ($request->hasFile('cover')) {
@@ -74,8 +74,7 @@ class EventController extends Controller
         $event->location    = $request->location;
         $event->date        = $request->date;
         $event->place       = $request->place;
-        $event->category    = $request->category;
-        $event->cover       = $coverName;
+        $event->category_id    = $request->category;
         $event->save();
 
         return redirect()->route('organiser.events')->with('success', 'Event updated successfully.');
