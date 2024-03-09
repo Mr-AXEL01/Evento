@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('date');
             $table->string('location');
             $table->string('place');
-            $table->enum('status',['approved','refused']);
+            $table->enum('status',['approved','pending','refused'])->default('pending');
             $table->foreignId('organiser_id')->constrained('organisers')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
