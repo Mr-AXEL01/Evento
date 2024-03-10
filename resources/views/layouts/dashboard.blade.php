@@ -18,6 +18,8 @@
         <x-sidebar-admin-dash/>
     @elseif(Auth::user()->role == 'organiser')
         <x-sidebar-organiser-dash/>
+    @elseif(Auth::user()->role == 'customer')
+        <x-sidebar-customer-dashb/>
     @endif
 @endif
 
