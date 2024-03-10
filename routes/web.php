@@ -34,9 +34,9 @@ Route::post('/admin/{user}/unsuspend', [AdminController::class, 'unsuspend'])->n
 Route::get('/admin/categories', [CategoryController::class, 'categories'])->name('admin.categories');
 Route::get('/admin/create_category',[CategoryController::class, 'create'])->name('admin.category.create');
 Route::post('/admin/create_category', [CategoryController::class, 'store'])->name('category.store');
-Route::get('admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
-Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
-Route::delete('admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
+Route::get('/admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+Route::put('/admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
+Route::delete('/admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
 Route::get('/admin/events', [AdminController::class, 'events'])->name('admin.events');
 Route::patch('admin/events/{event}/status/{status}', [AdminController::class, 'eventsReview'])->name('admin.review.event');
 
@@ -46,9 +46,10 @@ Route::get('/organiser/dashboard', [OrganiserController::class, 'dashboard'])->n
 Route::get('/organiser/events', [OrganiserController::class, 'events'])->name('organiser.events');
 Route::get('/organiser/create_event',[EventController::class, 'create'])->name('organiser.event.create');
 Route::post('/organiser/create_event', [EventController::class, 'store'])->name('organiser.event.store');
-Route::get('organiser/events/{event}/edit', [EventController::class, 'edit'])->name('organiser.events.edit');
-Route::put('organiser/events/{event}', [EventController::class, 'update'])->name('organiser.events.update');
-Route::delete('organiser/events/{event}', [EventController::class, 'destroy'])->name('organiser.events.destroy');
+Route::get('/organiser/events/{event}/edit', [EventController::class, 'edit'])->name('organiser.events.edit');
+Route::put('/organiser/events/{event}', [EventController::class, 'update'])->name('organiser.events.update');
+Route::delete('/organiser/events/{event}', [EventController::class, 'destroy'])->name('organiser.events.destroy');
+Route::get('/organiser/customers', [OrganiserController::class, 'customers'])->name('organiser.customers');
 
 #------------------- Customer ----------------------#
 Route::get('/customer/dashboard', function () {

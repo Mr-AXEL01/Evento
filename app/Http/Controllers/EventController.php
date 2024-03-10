@@ -23,6 +23,7 @@ class EventController extends Controller
             'date' => ['required', 'date'],
             'place' => ['required', 'integer', 'min:1'],
             'category' => ['required', 'exists:categories,id'],
+            'reservation_mode' => ['required', 'in:automatic,manual'],
             'cover' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
         ]);
 
@@ -32,14 +33,16 @@ class EventController extends Controller
         $organiserID = Auth::user()->organiser->id;
 
         Event::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'location' => $request->location,
-            'date' => $request->date,
-            'place' => $request->place,
-            'cover' => $coverName,
-            'organiser_id' => $organiserID,
-            'category_id' => $request->category,
+            'title'            => $request->title,
+            'description'      => $request->description,
+            'location'         => $request->location,
+            'date'             => $request->date,
+            'place'            => $request->place,
+            'category_id'      => $request->category,
+            'reservation_mode' => $request->reservation_mode,
+            'cover'            => $coverName,
+            'organiser_id'     => $organiserID,
+
         ]);
 
         return redirect()->route('organiser.events')->with('success', 'Event created successfully.');
@@ -60,6 +63,7 @@ class EventController extends Controller
             'date' => ['required', 'date'],
             'place' => ['required', 'integer', 'min:1'],
             'category' => ['required', 'exists:categories,id'],
+            'reservation_mode' => ['required', 'in:automatic,manual'],
             'cover' => ['image', 'mimes:jpeg,png,jpg,gif,webp'],
         ]);
 
@@ -69,12 +73,13 @@ class EventController extends Controller
             $event->cover = $coverName;
         }
 
-        $event->title       = $request->title;
-        $event->description = $request->description;
-        $event->location    = $request->location;
-        $event->date        = $request->date;
-        $event->place       = $request->place;
-        $event->category_id    = $request->category;
+        $event->title            = $request->title;
+        $event->description      = $request->description;
+        $event->location         = $request->location;
+        $event->date             = $request->date;
+        $event->place            = $request->place;
+        $event->category_id      = $request->category;
+        $event->reservation_mode = $request->reservation_mode;
         $event->save();
 
         return redirect()->route('organiser.events')->with('success', 'Event updated successfully.');

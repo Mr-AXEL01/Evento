@@ -22,9 +22,6 @@
                             <table class="min-w-full divide-y divide-Fuchsia-900">
                                 <thead class="bg-neutral-800">
                                 <tr>
-                                    <th scope="col" class="py-3.5 px-4 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
-                                        <span>Event ID</span>
-                                    </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
                                         Name
                                     </th>
@@ -41,6 +38,9 @@
                                         Place
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
+                                        Category
+                                    </th>
+                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
                                         Status
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center align-middle rtl:text-right text-sky-500">
@@ -51,22 +51,29 @@
                                 <tbody class="bg-white divide-y divide-orange-200" id="users-container">
                                 @foreach($events as $event)
                                     <tr>
-                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{$event->id}}</td>
-                                        <td class="px-12 py-4 flex text-sm font-medium items-center justify-center whitespace-nowrap">
-                                            <img src="{{ asset('storage/image/' . $event->cover) }}" alt="User Picture" class="w-12 h-10 rounded-full mr-2">
-                                            <div class="text-sm font-medium">{{ $event->title }}</div>
+                                        <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
+                                            <div class=" items-center justify-center">
+                                                <img src="{{ asset('storage/image/' . $event->cover) }}" alt="User Picture" class="w-14 h-10  rounded-full mx-auto">
+                                                <div class="text-sm font-medium">{{ $event->title }}</div>
+                                            </div>
                                         </td>
-                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle">{{ $event->description }}</td>
+                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap sm:whitespace-normal">{{ $event->description }}</td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $event->location }}</td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ date('d-m-Y', strtotime($event->date)) }}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$event->place}}</td>
+                                        <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
+                                            <div class=" items-center justify-center">
+                                                <img src="{{ asset('storage/image/' . $event->category->cover) }}" alt="User Picture" class="w-14 h-10 rounded-full mx-auto">
+                                                <div class="text-sm font-medium">{{ $event->category->title }}</div>
+                                            </div>
+                                        </td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">
                                             @if($event->status == 'pending')
                                                 <div class="text-sm text-orange-500 bg-orange-400/20 w-fit px-4 py-1 rounded-2xl">Pending</div>
                                             @elseif($event->status == 'approved')
-                                                <div class="text-sm text-blue-500 bg-green-400/20 w-fit px-4 py-1 rounded-2xl">Approved</div>
+                                                <div class="text-sm text-green-500 bg-green-400/20 w-fit px-4 py-1 rounded-2xl">Approved</div>
                                             @else
-                                                <div class="text-sm text-blue-500 bg-red-400/20 w-fit px-4 py-1 rounded-2xl">Refused</div>
+                                                <div class="text-sm text-red-600 bg-red-500/20 w-fit px-4 py-1 rounded-2xl">Refused</div>
                                             @endif
                                         </td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">
