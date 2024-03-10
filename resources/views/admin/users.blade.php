@@ -41,7 +41,7 @@
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{$user->id}}</td>
                                         <td class="px-12 py-4 flex text-sm font-medium items-center justify-center whitespace-nowrap">
-                                            <img src="{{ asset('storage/image/' . $user->picture) }}" alt="User Picture" class="w-8 h-8 rounded-full mr-2">
+                                            <img src="{{ asset('storage/image/' . $user->picture) }}" alt="User Picture" class="w-8 h-9 rounded-full mr-2">
                                             <div class="text-sm font-medium">{{ $user->name }}</div>
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $user->email }}</td>
