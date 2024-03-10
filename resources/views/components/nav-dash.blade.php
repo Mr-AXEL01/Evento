@@ -1,5 +1,5 @@
 <div class="py-2 px-6 bg-[#f8f4f3] flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
-    <button type="button" class="text-lg text-gray-900 font-semibold sidebar-toggle">
+    <button type="button"  class="text-lg  text-gray-900 font-semibold sidebar-toggle">
         <i class="fa-solid fa-bars"></i>
     </button>
 
@@ -57,4 +57,5 @@
         @endguest
     </ul>
 </div>
-<div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
+
+

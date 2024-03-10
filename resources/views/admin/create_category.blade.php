@@ -2,6 +2,7 @@
 
 @section('content')
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main">
+        <x-nav-dash/>
         <div class="container mx-auto py-6">
             <div class="max-w-2xl mx-auto">
                 <div class="bg-white p-6 rounded-lg shadow-md">

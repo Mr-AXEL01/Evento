@@ -2,6 +2,7 @@
 
 @section('content')
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main">
+        <x-nav-dash/>
         <div class=" p-5 mx-5 rounded-lg">
             <div class="uppercase text-sky-900 font-bold text-2xl">
                 Customers

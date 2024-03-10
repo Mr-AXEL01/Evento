@@ -12,16 +12,17 @@
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-<x-nav-dash/>
 @if(Auth::check())
     @if(Auth::user()->role == 'admin')
         <x-sidebar-admin-dash/>
     @elseif(Auth::user()->role == 'organiser')
         <x-sidebar-organiser-dash/>
     @elseif(Auth::user()->role == 'customer')
-        <x-sidebar-customer-dashb/>
+        <x-sidebar-customer-dash/>
     @endif
 @endif
+
+
 
 
 @yield('content')
