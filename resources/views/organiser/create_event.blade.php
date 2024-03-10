@@ -57,6 +57,24 @@
                         </div>
 
                         <div>
+                            <x-input-label for="reservation_mode" :value="__('Reservation Mode')" />
+
+                            <div class="mt-2">
+                                <label class="inline-flex items-center">
+                                    <input id="automatic_reservation" name="reservation_mode" type="radio" class="form-radio" value="automatic" {{ isset($event) && $event->reservation_mode === 'automatic' ? 'checked' : '' }}>
+                                    <span class="ml-2">Automatic</span>
+                                </label>
+
+                                <label class="inline-flex items-center ml-6">
+                                    <input id="manual_reservation" name="reservation_mode" type="radio" class="form-radio" value="manual" {{ isset($event) && $event->reservation_mode === 'manual' ? 'checked' : '' }}>
+                                    <span class="ml-2">Manual</span>
+                                </label>
+                            </div>
+
+                            <x-input-error :messages="$errors->get('reservation_mode')" class="mt-2" />
+                        </div>
+
+                        <div>
                             <label class="block text-sm font-medium text-black">Image</label>
                             <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer" onclick="document.getElementById('cover').click()">
                                 <div class="space-y-1 text-center">
