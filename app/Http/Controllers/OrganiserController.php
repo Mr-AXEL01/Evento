@@ -19,4 +19,10 @@ class OrganiserController extends Controller
         $events = Event::with('category')->where('organiser_id', $organiserId)->get();
         return view('organiser.events', compact('events'));
     }
+
+    public function reservations()
+    {
+        $reservations = Reservation::with('customer.user' , 'category');
+        return view('organiser.reservation',compact('reservations'));
+    }
 }

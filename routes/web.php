@@ -49,7 +49,7 @@ Route::post('/organiser/create_event', [EventController::class, 'store'])->name(
 Route::get('/organiser/events/{event}/edit', [EventController::class, 'edit'])->name('organiser.events.edit');
 Route::put('/organiser/events/{event}', [EventController::class, 'update'])->name('organiser.events.update');
 Route::delete('/organiser/events/{event}', [EventController::class, 'destroy'])->name('organiser.events.destroy');
-Route::get('/organiser/customers', [OrganiserController::class, 'customers'])->name('organiser.customers');
+Route::get('/organiser/reservation', [OrganiserController::class, 'reservations'])->name('organiser.reservation');
 
 #------------------- Customer ----------------------#
 Route::get('/customer/dashboard', function () {
