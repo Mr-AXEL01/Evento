@@ -53,7 +53,7 @@
                                 @foreach($events as $event)
                                     <tr>
                                         <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                                            <div class=" items-center justify-center">
+                                            <div class=" items-center text-center justify-center">
                                                 <img src="{{ asset('storage/image/' . $event->cover) }}" alt="User Picture" class="w-14 h-10  rounded-full mx-auto">
                                                 <div class="text-sm font-medium">{{ $event->title }}</div>
                                             </div>
@@ -63,7 +63,7 @@
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ date('d-m-Y', strtotime($event->date)) }}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$event->place}}</td>
                                         <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                                            <div class=" items-center justify-center">
+                                            <div class=" items-center text-center justify-center">
                                                 <img src="{{ asset('storage/image/' . $event->category->cover) }}" alt="User Picture" class="w-14 h-10 rounded-full mx-auto">
                                                 <div class="text-sm font-medium">{{ $event->category->title }}</div>
                                             </div>

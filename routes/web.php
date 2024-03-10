@@ -5,6 +5,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganiserController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Category;
+use App\Models\Event;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +21,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $categories = Category::all();
+    $events = Event::all();
+    $data = [
+      'categories' => $categories,
+      'events' => $events,
+    ];
+    return view('welcome',$data);
 });
 
 Route::get('/dashboard', function () {

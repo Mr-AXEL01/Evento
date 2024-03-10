@@ -58,7 +58,7 @@ class LoginRequest extends FormRequest
         if ($user->status === 'banned')
         {
             throw ValidationException::withMessages([
-                'email' => trans("can't log in , you are banned "),
+                'email' => trans("Can't log in , you are banned "),
             ]);
         }
 
