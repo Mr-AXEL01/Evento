@@ -39,7 +39,7 @@
                 <span class="">Events</span>
             </a>
             <a
-                href="{{ route('organiser.customers') }}"
+                href="{{ route('organiser.reservations') }}"
                 class="text-sm font-medium text-gray-700 py-3 px-2 hover:bg-[#831843] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
                 <svg
