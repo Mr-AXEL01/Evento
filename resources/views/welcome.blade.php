@@ -89,7 +89,7 @@
                                 <img class="object-cover w-full h-full" src="{{ asset('storage/image/' . $event->cover) }}" alt="Event Image" />
                             </div>
                             <div class="px-5 py-4">
-                                <a href="#" class="text-blue-600 hover:text-blue-800">
+                                <a href="{{ route('events.show', $event) }}" class="text-blue-600 hover:text-blue-800">
                                     <h5 class="text-2xl font-semibold text-gray-900 leading-tight">{{$event->title}}</h5>
                                 </a>
                                 <div class="flex items-center mt-2 mb-4 text-gray-600">
@@ -98,9 +98,11 @@
                                 </div>
                                 <p class="text-gray-800">{{$event->description}}</p>
                                 <div class="flex justify-center mt-4">
-                                    <a href="#" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm px-6 py-2.5 transition duration-300 ease-in-out">
-                                        Reserve Now
-                                    </a>
+                                    <form method="post" action="">
+{{--                                        {{ route('reservation.store', $event) }}--}}
+                                        @csrf
+                                        <x-primary-button type="submit">Reserve</x-primary-button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

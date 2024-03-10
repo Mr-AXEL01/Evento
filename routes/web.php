@@ -30,6 +30,11 @@ Route::get('/', function () {
     return view('welcome',$data);
 });
 
+Route::get('/show/{event}', function (Event $event) {
+    $event->load('organiser.user', 'category');
+    return view('single_page',compact('event'));
+})->name('events.show');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
