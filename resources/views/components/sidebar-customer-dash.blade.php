@@ -1,7 +1,7 @@
 
 <div class="fixed left-0 top-0 w-64 h-full bg-[#f8f4f3] p-4 z-50 sidebar-menu transition-transform">
-    <a href="#" class="flex items-center pb-4 border-b border-b-gray-800">
-        <h2 class="font-bold text-2xl">EVE<span class="bg-[#831843] text-white px-2 rounded-md">NTO</span></h2>
+    <a href="/" class="flex items-center pb-4 border-b border-b-gray-800">
+        <h2 class="font-bold text-2xl">EV<span class="bg-[#831843] text-white px-2 rounded-md">EN</span>TO</h2>
     </a>
     <ul class="mt-4">
 

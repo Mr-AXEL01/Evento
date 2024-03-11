@@ -21,7 +21,7 @@
         </section>
 
 
-        <section>
+        <section id="categories">
             <div class="py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
                 <h2 class="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900  md:text-4xl">Our Categories</h2>
                 <div class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6">
@@ -38,11 +38,10 @@
         </section>
 
                         {{---------------filter field -----------------}}
-        <!-- Filter Section -->
+        <h2 class="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900  md:text-4xl">Our Events</h2>
         <div class="w-[80%] p-5  mx-auto">
-            <!-- Filter Form -->
             <form action="{{ route('events.index') }}" method="GET" class="flex justify-between items-end">
-                <!-- Category Dropdown -->
+
                 <div class="w-[30%] mx-4">
                     <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Select Category</label>
                     <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
@@ -53,7 +52,6 @@
                     </select>
                 </div>
 
-                <!-- Search Input -->
                 <div class='w-[30%] mx-auto'>
                     <div class="relative flex items-center w-full h-12 rounded-full focus-within:shadow-lg bg-white overflow-hidden">
                         <div class="grid place-items-center h-full w-12 text-gray-300">
@@ -65,16 +63,14 @@
                     </div>
                 </div>
 
-                <!-- Filter Button -->
                 <div class="fit-content">
                     <button type="submit" class="block px-8 rounded-full py-2 bg-yellow-300  text-gray-800">Filter</button>
                 </div>
+
             </form>
         </div>
 
-        <!-- Events Section -->
-        <section class="py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
-            <!-- Events Cards -->
+        <section id="events" class="py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 @forelse($events as $event)
                     <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out">
@@ -98,11 +94,12 @@
                             </div>
                         </div>
                     </div>
+
                 @empty
                     <p class="text-red-600 text-center">No events found.</p>
                 @endforelse
+
             </div>
-        </section>
         </section>
     </main>
 @endsection
