@@ -50,8 +50,8 @@
                                             <div class="text-sm font-medium">{{ $category->title }}</div>
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle ">{{ $category->description }}</td>
-                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->created_at}}</td>
-                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->updated_at}}</td>
+                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{ date('d-m-Y', strtotime($category->created_at)) }}</td>
+                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{ date('d-m-Y', strtotime($category->updated_at)) }}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">
                                             <div class="flex justify-center gap-2">
                                                 <a href="{{ route('admin.categories.edit', $category) }}" class="inline-flex items-center justify-center px-2 py-2 rounded-lg transition duration-200 focus:outline-none focus:ring focus:ring-opacity-50">
@@ -74,6 +74,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="mt-4 px-4 py-3 flex items-center justify-between border-t border-gray-200 bg-violet-100 sm:px-6 lg:px-8">
+                {{ $categories->links() }}
             </div>
         </div>
     </main>
