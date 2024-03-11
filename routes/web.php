@@ -2,12 +2,11 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganiserController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Category;
 use App\Models\Event;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,9 +57,7 @@ Route::delete('/organiser/events/{event}', [EventController::class, 'destroy'])-
 Route::get('/organiser/reservations', [OrganiserController::class, 'reservations'])->name('organiser.reservations');
 
 #------------------- Customer ----------------------#
-Route::get('/customer/dashboard', function () {
-    return view('customer.dashboard');
-})->middleware(['auth', 'verified'])->name('customer.dashboard');
+Route::get('/customer/dashboard', [CustomerController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('customer.dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
