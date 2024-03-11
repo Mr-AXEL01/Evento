@@ -21,33 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (Request $request) {
-    $categories = Category::all();
-    $eventsQuery = Event::query()->where('status', 'approved');
-
-    if ($request->filled('category')) {
-        $category_id = $request->category;
-        $eventsQuery->where('category_id', $category_id);
-    }
-
-    if ($request->filled('search')) {
-        $searchQuery = $request->input('search');
-        $eventsQuery->where(function ($query) use ($searchQuery) {
-            $query->where('title', 'like', "%$searchQuery%")
-                ->orWhere('location', 'like', "%$searchQuery%")
-                ->orWhere('date', 'like', "%$searchQuery%");
-        });
-    }
-
-    $events = $eventsQuery->get();
-    if ($events->isEmpty()) {
-        $message = "No events found.";
-    } else {
-        $message = "";
-    }
-
-    return view('welcome', compact('categories', 'events', 'message'));
-})->name('events.index');
+Route::get('/',[EventController::class , 'index'])->name('events.index');
 
 Route::get('/show/{event}', function (Event $event) {
     $event->load('organiser.user', 'category');

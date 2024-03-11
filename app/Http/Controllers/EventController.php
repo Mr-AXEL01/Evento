@@ -9,6 +9,34 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
+    public function index(Request $request)
+    {
+        $categories = Category::all();
+        $eventsQuery = Event::query()->where('status', 'approved');
+
+        if ($request->filled('category')) {
+            $category_id = $request->category;
+            $eventsQuery->where('category_id', $category_id);
+        }
+
+        if ($request->filled('search')) {
+            $searchQuery = $request->input('search');
+            $eventsQuery->where(function ($query) use ($searchQuery) {
+                $query->where('title', 'like', "%$searchQuery%")
+                    ->orWhere('location', 'like', "%$searchQuery%")
+                    ->orWhere('date', 'like', "%$searchQuery%");
+            });
+        }
+
+        $events = $eventsQuery->get();
+        if ($events->isEmpty()) {
+            $message = "No events found.";
+        } else {
+            $message = "";
+        }
+
+        return view('welcome', compact('categories', 'events', 'message'));
+    }
     public function create() {
         $categories = Category::all();
         return view('organiser.create_event' , compact('categories'));

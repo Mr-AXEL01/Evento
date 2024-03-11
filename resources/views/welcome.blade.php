@@ -99,7 +99,7 @@
                         </div>
                     </div>
                 @empty
-                    <p>No events found.</p>
+                    <p class="text-red-600 text-center">No events found.</p>
                 @endforelse
             </div>
         </section>
