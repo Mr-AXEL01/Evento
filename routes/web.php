@@ -7,6 +7,7 @@ use App\Http\Controllers\OrganiserController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Category;
 use App\Models\Event;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,15 +21,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     $categories = Category::all();
-    $events = Event::all();
-    $data = [
-      'categories' => $categories,
-      'events' => $events,
-    ];
-    return view('welcome',$data);
-});
+    $eventsQuery = Event::query()->where('status', 'approved');
+
+    if ($request->filled('category')) {
+        $category_id = $request->category;
+        $eventsQuery->where('category_id', $category_id);
+    }
+
+    if ($request->filled('search')) {
+        $searchQuery = $request->input('search');
+        $eventsQuery->where(function ($query) use ($searchQuery) {
+            $query->where('title', 'like', "%$searchQuery%")
+                ->orWhere('location', 'like', "%$searchQuery%")
+                ->orWhere('date', 'like', "%$searchQuery%");
+        });
+    }
+
+    $events = $eventsQuery->get();
+    if ($events->isEmpty()) {
+        $message = "No events found.";
+    } else {
+        $message = "";
+    }
+
+    return view('welcome', compact('categories', 'events', 'message'));
+})->name('events.index');
 
 Route::get('/show/{event}', function (Event $event) {
     $event->load('organiser.user', 'category');

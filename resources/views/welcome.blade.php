@@ -38,24 +38,22 @@
         </section>
 
                         {{---------------filter field -----------------}}
-        <div class="w-[80%] p-5  mx-auto ">
-            <div>
-                <h4 class="text-3xl font-semibold my-3">Filter By</h4>
-            </div>
-            <div class="w-full items-end flex justify-center inline-flex">
-
+        <!-- Filter Section -->
+        <div class="w-[80%] p-5  mx-auto">
+            <!-- Filter Form -->
+            <form action="{{ route('events.index') }}" method="GET" class="flex justify-between items-end">
+                <!-- Category Dropdown -->
                 <div class="w-[30%] mx-4">
-                    <form class="">
-                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Select Category</label>
-                        <select id="category" name="category"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                            <option selected disabled>Choose a Category</option>
-                            @foreach($categories as $category)
-                                <option value="{{ $category->title }}">{{ $category->title }}</option>
-                            @endforeach
-                        </select>
-                    </form>
+                    <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Select Category</label>
+                    <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                        <option value="">Choose a Category</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                        @endforeach
+                    </select>
                 </div>
+
+                <!-- Search Input -->
                 <div class='w-[30%] mx-auto'>
                     <div class="relative flex items-center w-full h-12 rounded-full focus-within:shadow-lg bg-white overflow-hidden">
                         <div class="grid place-items-center h-full w-12 text-gray-300">
@@ -63,53 +61,48 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
                         </div>
-
-                        <x-text-input
-                            class="peer h-full w-full outline-none rounded-full border-none focus:border-none text-sm text-gray-700 pr-2"
-                            type="text"
-                            id="search"
-                            placeholder="Search something.." />
+                        <input type="text" id="search" name="search" placeholder="Search something.." class="peer h-full w-full outline-none rounded-full border-none focus:border-none text-sm text-gray-700 pr-2">
                     </div>
                 </div>
+
+                <!-- Filter Button -->
                 <div class="fit-content">
-                    <a href="#" class="block px-8 rounded-full py-2 bg-yellow-300  text-gray-800">All</a>
+                    <button type="submit" class="block px-8 rounded-full py-2 bg-yellow-300  text-gray-800">Filter</button>
                 </div>
-            </div>
+            </form>
         </div>
 
-            <!-- Events Section -->
-            <section class="py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
-                <h2 class="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 md:text-4xl">Events</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-
-                    <!-- Example Event Card -->
-                    @foreach($events as $event)
-                        <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-                            <div class="h-52 overflow-hidden rounded-t-lg">
-                                <img class="object-cover w-full h-full" src="{{ asset('storage/image/' . $event->cover) }}" alt="Event Image" />
+        <!-- Events Section -->
+        <section class="py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
+            <!-- Events Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                @forelse($events as $event)
+                    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                        <div class="h-52 overflow-hidden rounded-t-lg">
+                            <img class="object-cover w-full h-full" src="{{ asset('storage/image/' . $event->cover) }}" alt="Event Image" />
+                        </div>
+                        <div class="px-5 py-4">
+                            <a href="{{ route('events.show', $event) }}" class="text-blue-600 hover:text-blue-800">
+                                <h5 class="text-2xl font-semibold text-gray-900 leading-tight">{{ $event->title }}</h5>
+                            </a>
+                            <div class="flex items-center mt-2 mb-4 text-gray-600">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="ml-2">{{ $event->location }}</span>
                             </div>
-                            <div class="px-5 py-4">
-                                <a href="{{ route('events.show', $event) }}" class="text-blue-600 hover:text-blue-800">
-                                    <h5 class="text-2xl font-semibold text-gray-900 leading-tight">{{$event->title}}</h5>
-                                </a>
-                                <div class="flex items-center mt-2 mb-4 text-gray-600">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span class="ml-2">{{$event->location}}</span>
-                                </div>
-                                <p class="text-gray-800">{{$event->description}}</p>
-                                <div class="flex justify-center mt-4">
-                                    <form method="post" action="">
-{{--                                        {{ route('reservation.store', $event) }}--}}
-                                        @csrf
-                                        <x-primary-button type="submit">Reserve</x-primary-button>
-                                    </form>
-                                </div>
+                            <p class="text-gray-800">{{ $event->description }}</p>
+                            <div class="flex justify-center mt-4">
+                                <form method="post" action="">
+                                    @csrf
+                                    <x-primary-button type="submit">Reserve</x-primary-button>
+                                </form>
                             </div>
                         </div>
-
-                    @endforeach
-                </div>
-            </section>
-
+                    </div>
+                @empty
+                    <p>No events found.</p>
+                @endforelse
+            </div>
+        </section>
+        </section>
     </main>
 @endsection

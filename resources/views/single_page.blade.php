@@ -33,6 +33,10 @@
                                 <span class="text-gray-600">{{ date('d-m-Y', strtotime($event->date)) }}</span>
                             </div>
                         </div>
+                        <div class="items-center mb-4">
+                            <span class="font-bold text-gray-700">Places:</span>
+                            <span class="text-gray-600">{{ $event->place }}</span>
+                        </div>
                         <div class="mb-4">
                             <span class="font-bold text-gray-700">Category:</span>
                             <img class="p-2 w-[100px] h-[100px] rounded-t-lg" src="{{ asset('storage/image/' . $event->category->cover) }}" alt="category cover">
