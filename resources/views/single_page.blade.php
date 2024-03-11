@@ -22,14 +22,18 @@
                             <img class="w-full h-full object-cover" src="{{ asset('storage/image/' . $event->cover) }}" alt="Event Image" class="p-2 rounded-[20px] w-full">
                         </div>
                         <div class="flex justify-between mb-4">
-                            <form method="post" action="{{ route('reservations.store' ,$event) }}">
-                                @csrf
-                                <input type="hidden" name="customer_id" value="{{ Auth::user()->customer->id }}">
-                                <input type="hidden" name="event_id" value="{{ $event->id }}">
-                                <x-primary-button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                    Reserve
-                                </x-primary-button>
-                            </form>
+                            @auth
+                                <form method="post" action="{{ route('reservations.store', $event) }}">
+                                    @csrf
+                                    <input type="hidden" name="customer_id" value="{{ Auth::user()->customer->id }}">
+                                    <input type="hidden" name="event_id" value="{{ $event->id }}">
+                                    <x-primary-button type="submit">Reserve</x-primary-button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}">
+                                    <x-primary-button>Reserve</x-primary-button>
+                                </a>
+                            @endauth
                         </div>
                     </div>
                     <div class="md:flex-1 px-4">
@@ -52,17 +56,14 @@
                         <div class="mb-4">
                             <span class="font-bold text-gray-700">Category:</span>
                             <img class="p-2 w-[100px] h-[100px] rounded-t-lg" src="{{ asset('storage/image/' . $event->category->cover) }}" alt="category cover">
-                            <span class="text-gray-600">{{ $event->category->name }}</span>
+                            <span class="text-gray-600">{{ $event->category->title }}</span>
                         </div>
                         <div class="mb-4">
                             <span class="font-bold text-gray-700">Organiser:</span>
                             <img class="p-2 w-[100px] h-[100px] rounded-t-lg" src="{{ asset('storage/image/' . $event->organiser->user->picture) }}" alt="organiser image">
                             <span class="text-gray-600">{{ $event->organiser->user->name }}</span>
                         </div>
-                        <div>
-                            <span class="font-bold text-gray-700">Description:</span>
-                            <p class="text-gray-600 text-sm mt-2">{{ $event->description }}</p>
-                        </div>
+
                     </div>
                 </div>
             </div>

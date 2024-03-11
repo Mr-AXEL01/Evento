@@ -99,12 +99,18 @@
                             </div>
                             <p class="text-gray-800">{{ $event->description }}</p>
                             <div class="flex justify-center mt-4">
-                                <form method="post" action="{{ route('reservations.store' , $event) }}">
-                                    @csrf
-                                    <input type="hidden" name="customer_id" value="{{ Auth::user()->customer->id }}">
-                                    <input type="hidden" name="event_id" value="{{ $event->id }}">
-                                    <x-primary-button type="submit">Reserve</x-primary-button>
-                                </form>
+                                @auth
+                                    <form method="post" action="{{ route('reservations.store', $event) }}">
+                                        @csrf
+                                        <input type="hidden" name="customer_id" value="{{ Auth::user()->customer->id }}">
+                                        <input type="hidden" name="event_id" value="{{ $event->id }}">
+                                        <x-primary-button type="submit">Reserve</x-primary-button>
+                                    </form>
+                                @else
+                                    <a href="{{ route('login') }}">
+                                        <x-primary-button>Reserve</x-primary-button>
+                                    </a>
+                                @endauth
                             </div>
                         </div>
                     </div>
