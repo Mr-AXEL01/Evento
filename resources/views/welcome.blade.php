@@ -21,14 +21,14 @@
         </section>
 
 
-        <section id="categories">
+        <section id="categories" class="flex justify-center items-center">
             <div class="py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
-                <h2 class="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900  md:text-4xl">Our Categories</h2>
+                <h2 class="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 md:text-4xl">Our Categories</h2>
                 <div class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6">
                     @foreach($categories as $category)
                         <a href="#" class="flex justify-center items-center">
-                            <div class=" flex items-center justify-center bg-gray-100 p-3 rounded-[20px] gap-2">
-                                <img src="{{ asset('storage/image/' . $category->cover) }}" alt="Category Image" class="w-10 h-10  rounded-[10px] mx-auto">
+                            <div class="flex items-center justify-center bg-gray-100 p-3 rounded-[20px] gap-2">
+                                <img src="{{ asset('storage/image/' . $category->cover) }}" alt="Category Image" class="w-10 h-10 rounded-[10px] mx-auto">
                                 <div class="text-Xl text-black font-large">{{ $category->title }}</div>
                             </div>
                         </a>
@@ -37,7 +37,7 @@
             </div>
         </section>
 
-                        {{---------------filter field -----------------}}
+        {{---------------filter field -----------------}}
         <h2 class="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900  md:text-4xl">Our Events</h2>
         <div class="w-[80%] p-5  mx-auto">
             <form action="{{ route('events.index') }}" method="GET" class="flex justify-between items-end">
@@ -46,7 +46,7 @@
                     <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Select Category</label>
                     <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                         <option value="">Choose a Category</option>
-                        @foreach($categories as $category)
+                        @foreach($allCategories as $category)
                             <option value="{{ $category->id }}">{{ $category->title }}</option>
                         @endforeach
                     </select>
@@ -94,11 +94,12 @@
                             </div>
                         </div>
                     </div>
-
                 @empty
                     <p class="text-red-600 text-center">No events found.</p>
                 @endforelse
-
+            </div>
+            <div class="mt-4 px-4 py-3 flex items-center justify-between border-t border-gray-200 bg-violet-100 sm:px-6 lg:px-8">
+                {{ $events->links() }}
             </div>
         </section>
     </main>

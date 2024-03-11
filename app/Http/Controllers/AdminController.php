@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,7 +12,20 @@ class AdminController extends Controller
 {
 
     public function dashboard() {
-        return view('admin.dashboard');
+        $totalUsers = User::count();
+        $bannedUsers = User::where('status', 'banned')->count();
+        $approvedUsers = User::where('status', 'approved')->count();
+        $totalEvents = Event::count();
+        $totalCategories = Category::count();
+
+        $data = [
+          'totalUsers' => $totalUsers,
+          'bannedUsers' => $bannedUsers,
+          'approvedUsers'=> $approvedUsers,
+          'totalEvents' => $totalEvents,
+            'totalCategories' =>$totalCategories,
+        ];
+        return view('admin.dashboard', $data);
     }
     public function users()
     {
@@ -38,7 +52,7 @@ class AdminController extends Controller
 
     public function events()
     {
-        $events = Event::with('organiser.user')->where('status', 'pending')->paginate(10);
+        $events = Event::with('organiser.user')->where('status', 'pending')->paginate(5);
         return view('admin.events', compact('events'));
     }
 

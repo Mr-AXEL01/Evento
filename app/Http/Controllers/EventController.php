@@ -11,7 +11,8 @@ class EventController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::all();
+        $allCategories = Category::all();
+        $categories = Category::latest()->limit(6)->get();
         $eventsQuery = Event::query()->where('status', 'approved');
 
         if ($request->filled('category')) {
@@ -28,14 +29,14 @@ class EventController extends Controller
             });
         }
 
-        $events = $eventsQuery->get();
+        $events = $eventsQuery->paginate(7);
         if ($events->isEmpty()) {
             $message = "No events found.";
         } else {
             $message = "";
         }
 
-        return view('welcome', compact('categories', 'events', 'message'));
+        return view('welcome', compact('categories', 'allCategories' , 'events', 'message'));
     }
     public function create() {
         $categories = Category::all();

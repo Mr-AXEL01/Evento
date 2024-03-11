@@ -16,7 +16,7 @@ class OrganiserController extends Controller
     public function events()
     {
         $organiserId = Auth::user()->organiser->id;
-        $events = Event::with('category')->where('organiser_id', $organiserId)->get();
+        $events = Event::with('category')->where('organiser_id', $organiserId)->paginate(7);
         return view('organiser.events', compact('events'));
     }
 
