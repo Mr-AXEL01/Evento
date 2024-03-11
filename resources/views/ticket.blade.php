@@ -13,23 +13,17 @@
 <div class="ticket">
     <div class="holes-top"></div>
     <div class="title">
-        <p class="cinema">ODEON CINEMA PRESENTS</p>
-        <p class="movie-title">ONLY GOD FORGIVES</p>
-    </div>
-    <div class="poster">
-        <img src="{{ $event->cover }}" alt="Event Cover" />
+        <p class="movie-title">{{$event->title}}</p>
     </div>
     <div class="info">
         <table>
             <tr>
-                <th>EVENT</th>
                 <th>LOCATION</th>
                 <th>DATE</th>
             </tr>
             <tr>
-                <td class="bigger">{{ $event->title }}</td>
                 <td>{{ $event->location }}</td>
-                <td>{{ $event->date }}</td>
+                <td>{{ date('d-m-Y', strtotime($event->date)) }}</td>
             </tr>
         </table>
         <table>
@@ -38,8 +32,8 @@
                 <th>EMAIL</th>
             </tr>
             <tr>
-                <td>{{ $reservation->customer->name }}</td>
-                <td>{{ $reservation->customer->email }}</td>
+                <td>{{ $reservation->customer->user->name }}</td>
+                <td>{{ $reservation->customer->user->email }}</td>
             </tr>
         </table>
     </div>
@@ -47,10 +41,15 @@
     <div class="serial">
         <table class="barcode"><tr></tr></table>
         <table class="numbers">
+            <thead>
             <tr>
-                @foreach(str_split($reservation->id) as $digit)
-                    <td>{{ $digit }}</td>
-                @endforeach
+                <td>
+                    Ticket N:
+                </td>
+            </tr>
+            </thead>
+            <tr>
+                    <td>{{ $reservation->id }}</td>
             </tr>
         </table>
     </div>

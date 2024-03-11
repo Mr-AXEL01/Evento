@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReservationController extends Controller
 {
@@ -32,7 +33,19 @@ class ReservationController extends Controller
 
         $event->decrement('place');
 
-        Reservation::create($reservationData);
+        $reservation = Reservation::create($reservationData);
+
+        if ($reservation->status === 'approved' && $event->reservation_mode === 'automatic')
+        {
+            $data = [
+                'event' => $event,
+                'reservation' => $reservation,
+            ];
+
+            $pdf = PDF::loadView('ticket', $data);
+
+            return $pdf->stream('ticket.pdf');
+        }
 
         return redirect()->back()->with('success', 'Reservation created successfully.');
     }
