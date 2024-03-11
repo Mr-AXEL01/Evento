@@ -20,6 +20,8 @@
     @elseif(Auth::user()->role == 'customer')
         <x-sidebar-customer-dash/>
     @endif
+@else
+    <x-sidebar-viewer-dash/>
 @endif
 
 
