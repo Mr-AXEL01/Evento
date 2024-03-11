@@ -85,6 +85,9 @@
                     </div>
                 </div>
             </div>
+            <div class="mt-4 px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 lg:px-8">
+                {{ $events->links() }}
+            </div>
         </div>
     </main>
 @endsection
