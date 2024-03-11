@@ -24,13 +24,33 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'picture' => '7O2A9741.JPG',
-            'role' => 'admin',
-            'name' => 'abdelhak azrour',
-            'email' => 'abdelhakazrour3@gmail.com',
+           //---------------in case admin-----------------------
+//            'picture' => '7O2A9741.JPG',
+//            'role' => 'admin',
+//            'name' => 'abdelhak azrour',
+//            'email' => 'abdelhakazrour3@gmail.com',
+//            'email_verified_at' => now(),
+//            'password' => static::$password ??= Hash::make('password'),
+//            'remember_token' => Str::random(10),
+//
+            //---------------in case organiser-----------------------
+//            'picture' => 'devloper_avatar.jpg',
+//            'role' => 'organiser',
+//            'name' => $this->faker->name,
+//            'email' => $this->faker->unique()->safeEmail,
+//            'email_verified_at' => now(),
+//            'password' => static::$password ??= Hash::make('12345678'),
+//            'remember_token' => Str::random(10),
+
+            //---------------in case customer-----------------------
+            'picture' => 'devloper_avatar.jpg',
+            'role' => 'customer',
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => static::$password ??= Hash::make('12345678'),
             'remember_token' => Str::random(10),
+
         ];
     }
 
