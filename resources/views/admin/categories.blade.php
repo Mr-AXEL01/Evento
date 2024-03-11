@@ -49,7 +49,7 @@
                                             <img src="{{ asset('storage/image/' . $category->cover) }}" alt="User Picture" class="w-12 h-12 rounded-full mr-2">
                                             <div class="text-sm font-medium">{{ $category->title }}</div>
                                         </td>
-                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{ $category->description }}</td>
+                                        <td class="px-4 py-4 text-sm font-medium text-center align-middle ">{{ $category->description }}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->created_at}}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$category->updated_at}}</td>
                                         <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">

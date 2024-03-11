@@ -53,8 +53,8 @@
                                                 <div class="text-sm text-blue-500 bg-blue-400/20 w-fit px-4 py-1 rounded-2xl">Customer</div>
                                             @endif
                                         </td>
-                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$user->created_at}}</td>
-                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{$user->updated_at}}</td>
+                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
+                                        <td class="px-4 py-4 text-sm text-center align-middle whitespace-nowrap">{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
                                         <td class="flex gap-2 px-4 py-4 text-sm text-center align-middle whitespace-nowrap">
                                                 @if ($user->status == 'banned')
                                                 <form action="{{ route('users.unsuspend', $user) }}" method="POST">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4 px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 lg:px-8">
+            <div class="mt-4 px-4 py-3 flex items-center justify-between border-t border-gray-200 bg-violet-100 sm:px-6 lg:px-8">
                 {{ $users->links() }}
             </div>
         </div>

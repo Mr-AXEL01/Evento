@@ -15,8 +15,7 @@ class AdminController extends Controller
     }
     public function users()
     {
-        $users = User::where('role', '!=', 'admin')->get();
-        $users = User::paginate(10);
+        $users = User::where('role', '!=', 'admin')->paginate(7);
 
         return view('admin.users', compact('users'));
     }
@@ -39,8 +38,7 @@ class AdminController extends Controller
 
     public function events()
     {
-        $events = Event::with('organiser.user')->where('status', 'pending')->get();
-        $events = Event::paginate(10);
+        $events = Event::with('organiser.user')->where('status', 'pending')->paginate(10);
         return view('admin.events', compact('events'));
     }
 
