@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganiserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use App\Models\Event;
 use Illuminate\Support\Facades\Route;
 
@@ -58,7 +59,7 @@ Route::get('/organiser/reservations', [OrganiserController::class, 'reservations
 
 #------------------- Customer ----------------------#
 Route::get('/customer/dashboard', [CustomerController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('customer.dashboard');
-
+Route::post('/', [ReservationController::class, 'store'])->name('reservations.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

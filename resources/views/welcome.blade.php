@@ -3,6 +3,18 @@
 @section('content')
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-[#e7e5e4] min-h-screen transition-all main">
         <x-nav-dash/>
+        @if(session('success'))
+            <div class="bg-green-200 text-green-700 py-2 px-4 my-4 mx-auto w-3/4 rounded-md text-center">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="bg-red-200 text-red-700 py-2 px-4 my-4 mx-auto w-3/4 rounded-md text-center">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <section class="h-[80vh] flex items-center justify-center">
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:flex lg:justify-center">
                 <div class="mr-auto  lg:mr-0 lg:pr-8">
@@ -87,8 +99,10 @@
                             </div>
                             <p class="text-gray-800">{{ $event->description }}</p>
                             <div class="flex justify-center mt-4">
-                                <form method="post" action="">
+                                <form method="post" action="{{ route('reservations.store' , $event) }}">
                                     @csrf
+                                    <input type="hidden" name="customer_id" value="{{ Auth::user()->customer->id }}">
+                                    <input type="hidden" name="event_id" value="{{ $event->id }}">
                                     <x-primary-button type="submit">Reserve</x-primary-button>
                                 </form>
                             </div>
