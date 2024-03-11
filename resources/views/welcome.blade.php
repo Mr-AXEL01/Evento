@@ -98,7 +98,7 @@
                     <p class="text-red-600 text-center">No events found.</p>
                 @endforelse
             </div>
-            <div class="mt-4 px-4 py-3 flex items-center justify-between border-t border-gray-200 bg-violet-100 sm:px-6 lg:px-8">
+            <div class="mt-4 px-4 py-3 flex items-center justify-center border-t border-gray-200 bg-violet-100 sm:px-6 lg:px-8">
                 {{ $events->links() }}
             </div>
         </section>

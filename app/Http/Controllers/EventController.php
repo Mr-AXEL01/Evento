@@ -29,7 +29,7 @@ class EventController extends Controller
             });
         }
 
-        $events = $eventsQuery->paginate(7);
+        $events = $eventsQuery->paginate(8);
         if ($events->isEmpty()) {
             $message = "No events found.";
         } else {
