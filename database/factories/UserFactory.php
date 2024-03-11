@@ -24,7 +24,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'picture' => 'https://avatars.githubusercontent.com/u/104096799?=48&v=4',
+            'picture' => '7O2A9741.JPG',
             'role' => 'admin',
             'name' => 'abdelhak azrour',
             'email' => 'abdelhakazrour3@gmail.com',
