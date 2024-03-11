@@ -43,7 +43,7 @@
                                 @foreach($events as $event)
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium text-center align-middle whitespace-nowrap">{{$event->id}}</td>
-                                        <td class="px-12 py-4 text-sm font-medium items-center whitespace-nowrap">
+                                        <td class="px-12 py-4 text-sm font-medium items-center">
                                             <div class="flex items-center justify-center">
                                                 <img src="{{ asset('storage/image/' . $event->cover) }}" alt="Event Cover" class="w-12 h-10 rounded-full mr-2">
                                                 <div class="text-sm font-medium">{{ $event->title }}</div>
